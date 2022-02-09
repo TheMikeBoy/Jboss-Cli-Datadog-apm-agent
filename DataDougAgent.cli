@@ -1,0 +1,10 @@
+batch
+echo " Configure server-group ${server-group}
+/server-group=${server-group}/jvm=default:write-attribute(name=java-agent, value="/opt/jboss/domain/configuration/dd-java-agent.jar")
+/server-group=${server-group}/jvm=default:add-jvm-option(jvm-option="-Ddd.profiling.enabled=true")
+/server-group=${server-group}/jvm=default:add-jvm-option(jvm-option="-Ddd.logs.injection=true")
+/server-group=${server-group}/jvm=default:add-jvm-option(jvm-option="-Ddd.trace.sample.rate=1")
+/server-group=${server-group}/jvm=default:add-jvm-option(jvm-option="-Ddd.service=${server-group}")
+/server-group=${server-group}/jvm=default:add-jvm-option(jvm-option="-Ddd.env=${environment}")
+run-batch
+exit
